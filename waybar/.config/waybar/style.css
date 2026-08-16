@@ -27,34 +27,62 @@ window#waybar {
 }
 
 #workspaces button.active {
-  background-color: @blue;
+  background-color: @green;
   min-width: 1.7rem;
   transition: all 200ms ease-in-out;
 }
 
+.modules-right {
+  margin-right: 5px;
+}
+
 .modules-left,
 .modules-center,
-.modules-right {
+#apps,
+#hardware,
+#power {
   border-radius: 100px;
   background-color: @crust;
   padding: 5px 8px;
-  margin: 2px 5px;
+  margin: 5px 3px 0px;
   color: @text;
 }
 
 #tray,
 #network,
 #pulseaudio,
-#clock {
+#clock,
+#custom-shutdown,
+#custom-reboot,
+#custom-suspend,
+#custom-logout {
   color: @text;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  margin: 0px 2px;
   padding: 0 10px;
   border-radius: 50px;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-#tray {
-  background-color: @overlay-1;
+/* Distinct hover colors for each action */
+#custom-shutdown:hover {
+  background-color: @red;
+  color: @base;
+}
+
+#custom-reboot:hover {
+  background-color: @peach;
+  color: @base;
+}
+
+#custom-suspend:hover {
+  background-color: @blue;
+  color: @base;
+}
+
+#custom-logout:hover {
+  background-color: @mauve;
+  color: @base;
 }
 
 #network:hover,
@@ -62,10 +90,6 @@ window#waybar {
 #pulseaudio:hover {
   background-color: @green; /* Slightly deeper tone */
   color: @base;
-}
-
-#clock #calendar {
-  background-color: @blue;
 }
 
 #network.ethernet {

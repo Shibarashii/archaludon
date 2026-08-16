@@ -2,9 +2,51 @@
   "layer": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "network", "pulseaudio"],
+  "modules-right": ["group/apps", "group/hardware", "group/power"],
+  "group/apps": {
+    "orientation": "horizontal",
+    "modules": ["tray"]
+  },
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": ["network", "pulseaudio"]
+  },
+  "group/power": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "power-child",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/shutdown", // Power off
+      "custom/logout", // Logout
+      "custom/suspend", // Sleep
+      "custom/reboot" // Restart
+    ]
+  },
+  "custom/shutdown": {
+    "format": "<span size='250%'>󰐥</span>",
+    "tooltip-format": "Shut Down",
+    "on-click": "systemctl poweroff"
+  },
+  "custom/reboot": {
+    "format": "<span size='250%'>󰜉</span>",
+    "tooltip-format": "Restart",
+    "on-click": "systemctl reboot"
+  },
+  "custom/suspend": {
+    "format": "<span size='250%'>󰒲</span>",
+    "tooltip-format": "Sleep",
+    "on-click": "systemctl suspend"
+  },
+  "custom/logout": {
+    "format": "<span size='250%'>󰍃</span>",
+    "tooltip-format": "Log Out",
+    "on-click": "hyprctl dispatch exit"
+  },
   "clock": {
-    "format": "{:%a, %b. %d | %I:%M %p}",
+    "format": "<span size='larger' font_weight='ultrabold' color='#a6e3a1'>{0:%I:%M %p}</span>\n<span size='smaller' font-weight='bold'>{0:%a, %b. %d}</span>",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "month",
@@ -13,10 +55,10 @@
       "on-scroll": 1,
       "on-click-right": "mode",
       "format": {
-        "months": "<span color='#8caaee'><b>{}</b></span>",
+        "months": "<span color='#a6e3a1'><b>{}</b></span>",
         "days": "<span color='#949cbb'><b>{}</b></span>",
         "weekdays": "<span color='#c6d0f5'><b>{}</b></span>",
-        "today": "<span color='#8caaee'><b><u>{}</u></b></span>"
+        "today": "<span color='#a6e3a1'><b><u>{}</u></b></span>"
       }
     },
     "actions": {
@@ -40,16 +82,15 @@
     "on-scroll-down": "hyprctl dispatch split-cycleworkspaces +1",
     "all-outputs": false // recommended
   },
-
   // Modules Right
   "pulseaudio": {
-    "format": "<span size='250%'>{icon}</span>",
+    "format": "<span size='250%'>{icon}</span>  <span rise='6pt' font_weight='bold' size='larger'>{volume}</span>",
     "format-bluetooth": "{icon} {volume}% ",
     "format-muted": "󰝟",
     "format-icons": {
       "headphone": "",
       "hands-free": "󰂑",
-      "headset": "󰂑",
+      "headset": "",
       "phone": "",
       "phone-muted": "",
       "portable": "",
@@ -76,7 +117,7 @@
     "icon-size": 21,
     "spacing": 10,
     "icons": {
-      "blueman": "bluetooth",
+      "blueman": false,
       "spotify": false,
       "nm-applet": false
     }
