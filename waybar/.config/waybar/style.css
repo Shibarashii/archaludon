@@ -18,12 +18,34 @@ window#waybar {
 }
 
 #workspaces button {
-  background-color: @surface-1;
+  background-color: @overlay-0;
   color: transparent;
   padding: 0px 5px;
   border-radius: 99px;
   margin: 3px 2px;
   min-width: 10px;
+}
+
+#workspaces button.visible {
+  background-color: @green;
+}
+
+@keyframes urgent-flash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.3;
+  }
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+  animation: urgent-flash 0.4s ease-in-out infinite alternate;
+}
+
+#workspaces button.empty {
+  background-color: @surface-0;
 }
 
 #workspaces button.active {
@@ -32,13 +54,17 @@ window#waybar {
   transition: all 200ms ease-in-out;
 }
 
+#workspaces button:hover {
+  background-color: @overlay-2;
+}
+
 .modules-right {
   margin-right: 5px;
 }
 
 .modules-left,
 .modules-center,
-#apps,
+#tray,
 #hardware,
 #power {
   border-radius: 100px;
@@ -48,7 +74,10 @@ window#waybar {
   color: @text;
 }
 
-#tray,
+#tray {
+  padding: 5px 18px;
+}
+
 #network,
 #pulseaudio,
 #clock,

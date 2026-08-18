@@ -2,11 +2,11 @@
   "layer": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["group/apps", "group/hardware", "group/power"],
-  "group/apps": {
-    "orientation": "horizontal",
-    "modules": ["tray"]
-  },
+  "modules-right": ["tray", "group/hardware", "group/power"],
+  // "group/apps": {
+  //   "orientation": "horizontal",
+  //   "modules": ["tray"]
+  // },
   "group/hardware": {
     "orientation": "horizontal",
     "modules": ["network", "pulseaudio"]
@@ -28,12 +28,12 @@
   "custom/shutdown": {
     "format": "<span size='250%'>󰐥</span>",
     "tooltip-format": "Shut Down",
-    "on-click": "systemctl poweroff"
+    "on-click": "zenity --question --title='Power Off' --text='Are you sure you want to shut down?' && systemctl poweroff"
   },
   "custom/reboot": {
     "format": "<span size='250%'>󰜉</span>",
     "tooltip-format": "Restart",
-    "on-click": "systemctl reboot"
+    "on-click": "zenity --question --title='Restart' --text='Are you sure you want to restart?' && systemctl reboot"
   },
   "custom/suspend": {
     "format": "<span size='250%'>󰒲</span>",
@@ -43,7 +43,7 @@
   "custom/logout": {
     "format": "<span size='250%'>󰍃</span>",
     "tooltip-format": "Log Out",
-    "on-click": "hyprctl dispatch exit"
+    "on-click": "zenity --question --title='Log Out' --text='Are you sure you want to log out?' && hyprctl dispatch exit"
   },
   "clock": {
     "format": "<span size='larger' font_weight='ultrabold' color='#a6e3a1'>{0:%I:%M %p}</span>\n<span size='smaller' font-weight='bold'>{0:%a, %b. %d}</span>",
