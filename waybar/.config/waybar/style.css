@@ -18,7 +18,7 @@ window#waybar {
 }
 
 #workspaces button {
-  background-color: @overlay-0;
+  background-color: @overlay-2;
   color: transparent;
   padding: 0px 5px;
   border-radius: 99px;
