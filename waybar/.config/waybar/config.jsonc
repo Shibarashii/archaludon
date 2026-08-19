@@ -2,15 +2,115 @@
   "layer": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "group/hardware", "group/power"],
-  // "group/apps": {
-  //   "orientation": "horizontal",
-  //   "modules": ["tray"]
-  // },
+  "modules-right": ["tray", "group/stats", "group/hardware", "group/power"],
+
+  // MODULES LEFT
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "urgent": "",
+      "active": "", // focused workspace on current monitor
+      "visible": "", // focused workspace on other monitors
+      "default": "",
+      "empty": "" // persistent (created by this plugin)
+    },
+    "on-scroll-up": "hyprctl dispatch split-cycleworkspaces -1",
+    "on-scroll-down": "hyprctl dispatch split-cycleworkspaces +1",
+    "all-outputs": false // recommended
+  },
+
+  // MODULES CENTER
+  "clock": {
+    "format": "<span size='larger' font_weight='ultrabold' color='#a6e3a1'>{0:%I:%M %p}</span>\n<span size='smaller' font-weight='bold'>{0:%a, %b. %d}</span>",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "first-day-of-week": 1,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#a6e3a1'><b>{}</b></span>",
+        "days": "<span color='#949cbb'><b>{}</b></span>",
+        "weekdays": "<span color='#c6d0f5'><b>{}</b></span>",
+        "today": "<span color='#a6e3a1'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+
+  // MODULES RIGHT
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10,
+    "icons": {
+      "blueman": false,
+      "nm-applet": false
+    }
+  },
+  // Stats
+  "group/stats": {
+    "orientation": "horizontal",
+    "modules": ["temperature", "cpu", "memory"]
+  },
+  "temperature": {
+    "thermal-zone": 2,
+    "hwmon-path": [
+      "/sys/class/hwmon/hwmon2/temp1_input",
+      "/sys/class/thermal/thermal_zone0/temp"
+    ],
+    "critical-threshold": 80,
+    "format-critical": "<span size='250%' color='#f38ba8'>{icon}</span> <span rise='7pt' font_weight='medium'>{temperatureC}°C</span>",
+    "format": "<span size='250%'>{icon}</span> <span rise='7pt' font_weight='medium'>{temperatureC}°C</span>",
+    "format-icons": ["", "", "", ""]
+  },
+  "memory": {
+    "interval": 30,
+    "format": "<span size='160%'></span>    <span rise='3pt' font_weight='medium'>{used} GiB</span>",
+    "tooltip-format": "{percentage}% used"
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "<span size='250%'></span> <span rise='7pt' font_weight='medium'>{}%</span>",
+    "max-length": 10
+  },
+  // Hardware
   "group/hardware": {
     "orientation": "horizontal",
     "modules": ["network", "pulseaudio"]
   },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "<span size='250%'>󰈀</span>",
+    "format-disconnected": "<span size='250%'></span>",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "Click to open connection editor\n\nConnected via <span color='#a6d189'>Ethernet</span>\nIP Address: <span color='#a6d189'>{ipaddr}</span>",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "nm-connection-editor"
+  },
+  "pulseaudio": {
+    "format": "<span size='250%'>{icon}</span>  <span rise='6pt' font_weight='bold' size='larger'>{volume}</span>",
+    "format-bluetooth": "<span size='250%'>{icon}</span>  <span rise='6pt' font_weight='bold' size='larger'>{volume}</span>",
+    "format-muted": "<span size='250%'>󰝟</span>",
+    "format-icons": {
+      "headphone": "<span size='250%'></span>",
+      "headset": "<span size='250%'></span>",
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "scroll-step": 1,
+    "tooltip-format": "Open PulseAudio Volume Control",
+    "on-click": "pavucontrol"
+  },
+  // Power
   "group/power": {
     "orientation": "inherit",
     "drawer": {
@@ -44,82 +144,5 @@
     "format": "<span size='250%'>󰍃</span>",
     "tooltip-format": "Log Out",
     "on-click": "zenity --question --title='Log Out' --text='Are you sure you want to log out?' && hyprctl dispatch exit"
-  },
-  "clock": {
-    "format": "<span size='larger' font_weight='ultrabold' color='#a6e3a1'>{0:%I:%M %p}</span>\n<span size='smaller' font-weight='bold'>{0:%a, %b. %d}</span>",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "mode": "month",
-      "mode-mon-col": 3,
-      "first-day-of-week": 1,
-      "on-scroll": 1,
-      "on-click-right": "mode",
-      "format": {
-        "months": "<span color='#a6e3a1'><b>{}</b></span>",
-        "days": "<span color='#949cbb'><b>{}</b></span>",
-        "weekdays": "<span color='#c6d0f5'><b>{}</b></span>",
-        "today": "<span color='#a6e3a1'><b><u>{}</u></b></span>"
-      }
-    },
-    "actions": {
-      "on-click-right": "mode",
-      "on-click-forward": "tz_up",
-      "on-click-backward": "tz_down",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
-  },
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-      "urgent": "",
-      "active": "", // focused workspace on current monitor
-      "visible": "", // focused workspace on other monitors
-      "default": "",
-      "empty": "" // persistent (created by this plugin)
-    },
-    "on-scroll-up": "hyprctl dispatch split-cycleworkspaces -1",
-    "on-scroll-down": "hyprctl dispatch split-cycleworkspaces +1",
-    "all-outputs": false // recommended
-  },
-  // Modules Right
-  "pulseaudio": {
-    "format": "<span size='250%'>{icon}</span>  <span rise='6pt' font_weight='bold' size='larger'>{volume}</span>",
-    "format-bluetooth": "{icon} {volume}% ",
-    "format-muted": "󰝟",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "󰂑",
-      "headset": "",
-      "phone": "",
-      "phone-muted": "",
-      "portable": "",
-      "car": "",
-      "default": ["󰕿", "󰖀", "󰕾"]
-    },
-    "scroll-step": 1,
-    "tooltip-format": "Open PulseAudio Volume Control",
-    "on-click": "pavucontrol"
-  },
-  "network": {
-    "format": "{ifname}",
-    "format-wifi": "{essid} ({signalStrength}%) ",
-    "format-ethernet": "<span size='250%'>󰈀</span>",
-    "format-disconnected": "<span size='250%'></span>",
-    "tooltip-format": "{ifname}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "Click to open connection editor\n\nConnected via <span color='#a6d189'>Ethernet</span>\nIP Address: <span color='#a6d189'>{ipaddr}</span>",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50,
-    "on-click": "nm-connection-editor"
-  },
-  "tray": {
-    "icon-size": 21,
-    "spacing": 10,
-    "icons": {
-      "blueman": false,
-      "spotify": false,
-      "nm-applet": false
-    }
   }
 }

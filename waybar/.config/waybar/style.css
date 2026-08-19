@@ -6,6 +6,7 @@
 
 window#waybar {
   color: @text;
+  /* background-color: @crust; */
   /* border-radius: 0 0 10px 10px; */
 }
 
@@ -58,39 +59,80 @@ window#waybar {
   background-color: @overlay-2;
 }
 
-.modules-right {
-  margin-right: 5px;
-}
-
 .modules-left,
 .modules-center,
 #tray,
+#stats,
 #hardware,
 #power {
   border-radius: 100px;
   background-color: @crust;
   padding: 5px 8px;
-  margin: 5px 3px 0px;
+  margin: 10px 3px 0px;
   color: @text;
+}
+
+.modules-right {
+  margin-right: 20px;
+}
+
+.modules-left {
+  margin-left: 20px;
 }
 
 #tray {
   padding: 5px 18px;
 }
 
+#tray menu {
+  background-color: @base;
+  border: 1px solid @surface-1;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+#tray menu menuitem {
+  color: @text;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+#tray menu menuitem:hover {
+  background-color: @green;
+  color: @base;
+}
+
+/* Separator lines between menu groups */
+#tray menu separator {
+  background-color: @surface-1;
+  min-height: 1px;
+  margin: 4px 8px;
+}
+
+#clock,
+#temperature,
+#cpu,
+#memory,
 #network,
 #pulseaudio,
-#clock,
 #custom-shutdown,
 #custom-reboot,
 #custom-suspend,
 #custom-logout {
   color: @text;
+  /* background-color: @blue; */
   font-size: 0.9rem;
-  margin: 0px 2px;
+  margin: 0px 1px;
   padding: 0 10px;
   border-radius: 50px;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#temperature,
+#cpu,
+#memory {
+  padding: 0px 5px;
 }
 
 /* Distinct hover colors for each action */
