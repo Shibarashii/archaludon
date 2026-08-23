@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
+  "modules-center": ["clock", "custom/weather"],
   "modules-right": ["tray", "group/stats", "group/hardware", "group/power"],
 
   // MODULES LEFT
@@ -44,14 +44,20 @@
       "on-scroll-down": "shift_down"
     }
   },
-
+  "custom/weather": {
+    "exec": "~/.config/waybar/scripts/wttr.sh",
+    "return-type": "json",
+    "interval": 900,
+    "tooltip": true
+  },
   // MODULES RIGHT
   "tray": {
     "icon-size": 21,
     "spacing": 10,
     "icons": {
       "blueman": false,
-      "nm-applet": false
+      "nm-applet": false,
+      "spotify": false
     }
   },
   // Stats
