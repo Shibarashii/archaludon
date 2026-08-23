@@ -9,15 +9,37 @@ alias nv='nvim'
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+
 autoload -Uz compinit && compinit
 
 # Path to your Oh My Zsh installation.
+
+function y() {
+	local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+	command rm -f -- "$tmp"
+}
+
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
+export VISUAL='nvim'
 export SUDOEDITOR='nvim'
 export TERMINAL='kitty'
 export FILE_MANAGER='thunar'
+export QT_QPA_PLATFORMTHEME=qt6ct
+export BROWSER="brave --ozone-platform=wayland --disable-features=WaylandWpColorManagerV1"
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+IDE='antigravity-ide'
+alias edotfiles='$IDE ~/dotfiles'
+alias efastfetch='$IDE ~/dotfiles/fastfetch/.config/fastfetch'
+alias ehypr='$IDE ~/dotfiles/hypr/.config/hypr'
+alias ewaybar='$IDE ~/dotfiles/waybar/.config/waybar'
+alias ezshrc='$IDE ~/dotfiles/zsh/.zshrc'
+alias erofi='$IDE ~/dotfiles/rofi/.config/rofi'
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -73,7 +95,9 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+
+
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-autocomplete archlinux) 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,3 +132,5 @@ export LANG=en_US.UTF-8
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval "$(fnm env --use-on-cd)"
