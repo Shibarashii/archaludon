@@ -97,6 +97,7 @@ listview {
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
+    flow:                        horizontal;
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
