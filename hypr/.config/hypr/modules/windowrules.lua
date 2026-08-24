@@ -36,3 +36,10 @@ smw.setup({
     workspace_count = 5, -- This will create 5 persistent workspaces on each monitor at startup
     monitor_priority = { "DP-2", "DP-1" },
 })
+
+hl.layer_rule({
+    name        = "blur-rofi",
+    match       = { namespace = "rofi" },
+    blur        = true,
+    ignore_alpha = 0.1 
+})
