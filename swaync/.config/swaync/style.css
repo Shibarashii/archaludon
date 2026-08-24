@@ -1,0 +1,13 @@
+/* =============================================================================
+ * SwayNC Root Stylesheet Entrypoint
+ * =============================================================================
+ * This file is the main stylesheet loaded by SwayNC daemon.
+ * It imports the color palette and the two independent component stylesheets:
+ * 1. colors.css              -> Catppuccin Mocha color tokens & semantic variables
+ * 2. themes/notifications.css -> Floating toast notification popups
+ * 3. themes/central_control.css -> Control center flyout side panel (SUPER + N)
+ * ============================================================================= */
+
+@import 'colors.css';
+@import 'themes/notifications.css';
+@import 'themes/central_control.css';

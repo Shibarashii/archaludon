@@ -1,0 +1,54 @@
+/* =============================================================================
+ * SwayNC Colors - Catppuccin Mocha Palette
+ * =============================================================================
+ * This file defines the base Catppuccin Mocha color tokens and maps them to
+ * semantic theme variables used throughout SwayNC widgets and notifications.
+ * ============================================================================= */
+
+/* --- Primary Accents --- */
+@define-color rosewater #f5e0dc;
+@define-color flamingo  #f2cdcd;
+@define-color pink      #f5c2e7;
+@define-color mauve     #cba6f7;
+@define-color red       #f38ba8;
+@define-color maroon    #eba0ac;
+@define-color peach     #fab387;
+@define-color yellow    #f9e2af;
+@define-color green     #a6e3a1;  /* Primary active accent (matches Hyprland borders) */
+@define-color teal      #94e2d5;  /* Secondary active accent */
+@define-color sky       #89dceb;
+@define-color sapphire  #74c7ec;
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+
+/* --- Typography Colors --- */
+@define-color text      #cdd6f4;  /* Primary foreground text */
+@define-color subtext-1 #bac2de;  /* Secondary / subtitle text */
+@define-color subtext-0 #a6adc8;  /* Muted / timestamp text */
+
+/* --- Overlay Levels --- */
+@define-color overlay-2 #9399b2;
+@define-color overlay-1 #7f849c;
+@define-color overlay-0 #6c7086;
+
+/* --- Surface Levels (Cards & Widgets) --- */
+@define-color surface-2 #585b70;  /* Hover active state */
+@define-color surface-1 #45475a;  /* Borders & interactive card hover */
+@define-color surface-0 #313244;  /* Widget cards & button background */
+
+/* --- Base & Background Levels --- */
+@define-color base      #1e1e2e;  /* Floating notification card background */
+@define-color mantle    #181825;  /* Secondary dark layer */
+@define-color crust     #11111b;  /* Control center panel background */
+
+/* =============================================================================
+ * Semantic Theme Variables (Referenced by notifications.css & central_control.css)
+ * ============================================================================= */
+@define-color bg-selected         @green;              /* Active toggles & progress highlights */
+@define-color text-selected       @base;               /* Text on active buttons */
+@define-color cc-bg               alpha(@crust, 0.85); /* Semi-transparent control panel bg */
+@define-color notif-bg            alpha(@base, 0.85);  /* Semi-transparent popup toast bg */
+@define-color notif-border        @surface-1;          /* Card outline border */
+@define-color widget-bg           @surface-0;          /* Widget background (MPRIS, DND, Volume) */
+@define-color widget-bg-hover     @surface-1;          /* Widget hover state */
+@define-color urgent              @red;                /* Critical notification highlight */

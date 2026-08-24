@@ -56,8 +56,7 @@
     "spacing": 10,
     "icons": {
       "blueman": false,
-      "nm-applet": false,
-      "spotify": false
+      "nm-applet": false
     }
   },
   // Stats
@@ -89,7 +88,7 @@
   // Hardware
   "group/hardware": {
     "orientation": "horizontal",
-    "modules": ["network", "pulseaudio"]
+    "modules": ["network", "pulseaudio", "custom/notification"]
   },
   "network": {
     "format": "{ifname}",
@@ -115,6 +114,27 @@
     "scroll-step": 1,
     "tooltip-format": "Open PulseAudio Volume Control",
     "on-click": "pavucontrol"
+  },
+  // SwayNC Notification Center
+  "custom/notification": {
+    "tooltip": false,
+    "format": "<span size='200%'>{icon}</span>",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂚",
+      "dnd-notification": "󰂛",
+      "dnd-none": "󰂛",
+      "inhibited-notification": "󱅫",
+      "inhibited-none": "󰂚",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰂛"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -df -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
   },
   // Power
   "group/power": {

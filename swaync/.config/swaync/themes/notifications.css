@@ -1,0 +1,200 @@
+/* =============================================================================
+ * SwayNC Themes - Floating Toast Notifications (Popups)
+ * =============================================================================
+ * This file styles the temporary notification banners that briefly appear
+ * in the top-right corner of your screen when an event or alert occurs.
+ * ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+ * 1. Global Reset & Typography
+ * ----------------------------------------------------------------------------- */
+* {
+  color: @text;
+  all: unset;
+  font-size: 14px;
+  font-family:
+    'Noto Sans', 'Noto Sans Nerd Font', 'JetBrains Mono Nerd Font', sans-serif;
+  transition: all 0.25s ease-in-out;
+}
+
+/* -----------------------------------------------------------------------------
+ * 2. Notification Popup Window & Card Container
+ * ----------------------------------------------------------------------------- */
+.notification-row {
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Outer floating toast card (Glassmorphism card) */
+.floating-notifications.background .notification-row .notification-background {
+  background: @notif-bg; /* Semi-transparent Mocha Base */
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.5); /* Floating drop shadow */
+  border: 1px solid @notif-border; /* Subtle surface border */
+  border-radius: 16px; /* Rounded corners matching Hyprland */
+  margin: 12px 14px; /* Margin from screen edge */
+  padding: 0;
+}
+
+/* Inner notification content wrapper */
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification {
+  padding: 10px 14px;
+  border-radius: 16px;
+}
+
+/* Red outline for urgent/critical notifications */
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification.critical {
+  border: 2px solid @red;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. Notification Media & App Icons
+ * ----------------------------------------------------------------------------- */
+/* Hide secondary overlay badge when an avatar image is present */
+.app-icon {
+  display: none;
+  margin: 0px 13px 6px 0px;
+}
+
+/* Standalone app icon (e.g. Antigravity, Discord, Spotify, terminal alerts) */
+.notification > .app-icon {
+  display: block;
+  margin: 4px 14px 4px 0px;
+  -gtk-icon-size: 36px;
+  border-radius: 10px;
+}
+
+/* Sender profile picture / website photo (e.g. Brave web notifications) */
+.image {
+  margin: 4px 14px 4px 0px;
+  border-radius: 10px;
+}
+
+/* -----------------------------------------------------------------------------
+ * 4. Notification Text Column
+ * ----------------------------------------------------------------------------- */
+.notification-content {
+  margin: 2px 0px;
+  padding: 0;
+}
+
+/* Notification Title (Summary) */
+.summary {
+  font-weight: 700;
+  font-size: 1rem;
+  color: @green; /* Active accent color */
+  margin-bottom: 2px;
+}
+
+/* Timestamp in the corner */
+.time {
+  font-size: 0.75rem;
+  color: @subtext-0; /* Muted timestamp */
+  margin-right: 16px;
+}
+
+/* Notification Message Body */
+.body {
+  font-size: 0.85rem;
+  color: @text;
+  margin-top: 2px;
+}
+
+/* -----------------------------------------------------------------------------
+ * 5. Interactive Action Buttons (e.g. "Reply", "Settings", "Dismiss")
+ * ----------------------------------------------------------------------------- */
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > * {
+  min-height: 3.4em;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action {
+  border-radius: 8px;
+  background-color: @surface-0;
+  color: @text;
+  margin: 6px;
+  padding: 6px 12px;
+  border: 1px solid @surface-1;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:hover {
+  background-color: @green;
+  color: @base;
+  border: 1px solid @green;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:active {
+  background-color: @teal;
+  color: @base;
+}
+
+/* -----------------------------------------------------------------------------
+ * 6. Close (Dismiss) Button
+ * ----------------------------------------------------------------------------- */
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .close-button {
+  margin: 6px;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  color: @subtext-0;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .close-button:hover {
+  background-color: @red;
+  color: @base;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .close-button:active {
+  background-color: @maroon;
+  color: @base;
+}
+
+/* -----------------------------------------------------------------------------
+ * 7. Progress Bars (For notifications with progress/timeout timers)
+ * ----------------------------------------------------------------------------- */
+.notification.critical progress {
+  background-color: @red;
+}
+
+.notification.low progress,
+.notification.normal progress {
+  background-color: @green;
+}

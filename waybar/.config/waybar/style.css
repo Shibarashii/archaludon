@@ -61,6 +61,7 @@ window#waybar {
 
 .modules-left,
 .modules-center,
+#custom-notification,
 #tray,
 #stats,
 #hardware,
@@ -117,6 +118,7 @@ window#waybar {
 #memory,
 #network,
 #pulseaudio,
+#custom-notification,
 #custom-shutdown,
 #custom-reboot,
 #custom-suspend,
@@ -163,7 +165,8 @@ window#waybar {
 
 #network:hover,
 #network.ethernet:hover,
-#pulseaudio:hover {
+#pulseaudio:hover,
+#custom-notification:hover {
   background-color: @green; /* Slightly deeper tone */
   color: @base;
 }
