@@ -6,13 +6,13 @@ local colors = require("modules.colors")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  = 3,
+        gaps_in  = 5,
         gaps_out = 20,
 
-        border_size = 1,
+        border_size = 2,
 
         col = {
-            active_border   = { colors = {colors.teal, colors.green}, angle = 45 },
+            active_border   = { colors = {colors.green, colors.teal}, angle = 45 },
             inactive_border = colors.crust,
         },
 
