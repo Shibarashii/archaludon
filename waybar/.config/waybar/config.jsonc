@@ -142,14 +142,20 @@
     "drawer": {
       "transition-duration": 300,
       "children-class": "power-child",
-      "transition-left-to-right": false
+      "transition-left-to-right": false,
+      "click-to-reveal": true
     },
     "modules": [
-      "custom/shutdown", // Power off
+      "custom/power",
       "custom/logout", // Logout
       "custom/suspend", // Sleep
-      "custom/reboot" // Restart
+      "custom/reboot", // Restart
+      "custom/shutdown" // Power off
     ]
+  },
+  "custom/power": {
+    "format": "<span size='250%'>󰣇</span>",
+    "tooltip-format": "Power Menu"
   },
   "custom/shutdown": {
     "format": "<span size='250%'>󰐥</span>",
@@ -169,6 +175,6 @@
   "custom/logout": {
     "format": "<span size='250%'>󰍃</span>",
     "tooltip-format": "Log Out",
-    "on-click": "zenity --question --title='Log Out' --text='Are you sure you want to log out?' && hyprctl dispatch exit"
+    "on-click": "zenity --question --title='Log Out' --text='Are you sure you want to log out?' && hyprctl dispatch 'hl.dsp.exit()'"
   }
 }

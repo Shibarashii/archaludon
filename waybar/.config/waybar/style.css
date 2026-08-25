@@ -19,7 +19,7 @@ window#waybar {
 }
 
 #workspaces button {
-  background-color: @overlay-2;
+  background-color: @subtext-1;
   color: transparent;
   padding: 0px 5px;
   border-radius: 99px;
@@ -46,7 +46,7 @@ window#waybar {
 }
 
 #workspaces button.empty {
-  background-color: @surface-0;
+  background-color: @surface-1;
 }
 
 #workspaces button.active {
@@ -61,13 +61,12 @@ window#waybar {
 
 .modules-left,
 .modules-center,
-#custom-notification,
 #tray,
 #stats,
 #hardware,
 #power {
   border-radius: 100px;
-  background-color: @crust;
+  background-color: @base;
   padding: 5px 8px;
   margin: 10px 3px 0px;
   color: @text;
@@ -119,6 +118,7 @@ window#waybar {
 #network,
 #pulseaudio,
 #custom-notification,
+#custom-power,
 #custom-shutdown,
 #custom-reboot,
 #custom-suspend,
@@ -142,7 +142,16 @@ window#waybar {
   padding: 0px 5px;
 }
 
+#custom-power {
+  color: @blue;
+}
+
 /* Distinct hover colors for each action */
+#custom-power:hover {
+  background-color: @green;
+  color: @base;
+}
+
 #custom-shutdown:hover {
   background-color: @red;
   color: @base;
