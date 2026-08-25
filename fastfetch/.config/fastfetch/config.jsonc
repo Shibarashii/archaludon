@@ -1,0 +1,46 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "source": "/home/shiba/dotfiles/fastfetch/.config/fastfetch/logos/archaludon-ascii-art.txt",
+    "type": "auto",
+    // "color": {
+    //   "1": "blue"
+    // },
+    "padding": {
+      // "top": 1, // Blank lines above the logo
+      // "left": 2, // Spacing from the terminal's left edge
+      "left": 5 // Gap between the logo and the system specs text
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "display",
+    "de",
+    "wm",
+    "wmtheme",
+    "theme",
+    "icons",
+    "font",
+    "cursor",
+    "terminal",
+    "terminalfont",
+    "cpu",
+    "gpu",
+    "memory",
+    "swap",
+    "disk",
+    "battery",
+    "poweradapter",
+    "localip",
+    "locale",
+    "break",
+    "colors"
+  ]
+}
