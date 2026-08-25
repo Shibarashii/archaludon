@@ -43,3 +43,18 @@ hl.layer_rule({
     blur        = true,
     ignore_alpha = 0.1 
 })
+
+hl.layer_rule({
+    name = "notification-animation",
+    match = { namespace = "swaync-control-center" },
+    animation = "slide top",
+    blur = true,
+    ignore_alpha = 0.5,
+})
+
+hl.layer_rule({
+    name = "notification-window-blur",
+    match = { namespace = "swaync-notification-window" },
+    blur = true,
+    ignore_alpha = 0.5,
+})
