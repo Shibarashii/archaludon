@@ -13,6 +13,9 @@ configuration {
     show-icons:                 true;
     display-drun:               "";
 	drun-display-format:        "{name}";
+    drun-match-fields:          "name,generic,exec";
+    sort:                       true;
+    sorting-method:             "fzf";
 }
 
 /*****----- Global Properties -----*****/
