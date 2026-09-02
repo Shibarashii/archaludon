@@ -9,3 +9,10 @@ vim.opt.number = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
+-- Vim Diagnostic
+vim.diagnostic.config({
+  virtual_text = { severity = vim.diagnostic.severity.ERROR },
+  virtual_lines = { current_line = true }, -- only show for the line your cursor is on
+})
+
+
