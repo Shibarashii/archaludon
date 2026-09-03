@@ -1,5 +1,9 @@
 local map = vim.keymap.set
 
+map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+map('n', '<C-/>', ':split | term<CR>', { desc = 'Open terminal in split' })
+
+
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
