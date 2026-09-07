@@ -15,8 +15,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', 'K', vim.lsp.buf.hover, opts)
     map('n', '<leader>rn', vim.lsp.buf.rename, opts)
     map({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-    map('n', '<leader>f', function()
-      vim.lsp.buf.format({ async = true })
-    end, opts)
+    -- Formatting is handled by conform.nvim (<leader>gf) with lsp fallback.
+    -- Do not add a separate vim.lsp.buf.format binding here.
   end,
 })

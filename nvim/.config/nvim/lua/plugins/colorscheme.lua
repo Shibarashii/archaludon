@@ -11,27 +11,27 @@ return {
 		transparent_background = false,
 		term_colors = true,
 		integrations = {
-			cmp = true,
+			blink_cmp = true,
 			gitsigns = true,
 			neotree = true,
 			treesitter = true,
 			telescope = true,
 			which_key = true,
 			mason = true,
-			native_lsp = {
-				enabled = true,
-				virtual_text = {
-					errors = { "italic" },
-					hints = { "italic" },
-					warnings = { "italic" },
-					information = { "italic" },
-				},
-				underlines = {
-					errors = { "underline" },
-					hints = { "underline" },
-					warnings = { "underline" },
-					information = { "underline" },
-				},
+		},
+		-- Replaces the old integrations.native_lsp block (current catppuccin API)
+		lsp_styles = {
+			virtual_text = {
+				errors = { "italic" },
+				hints = { "italic" },
+				warnings = { "italic" },
+				information = { "italic" },
+			},
+			underlines = {
+				errors = { "underline" },
+				hints = { "underline" },
+				warnings = { "underline" },
+				information = { "underline" },
 			},
 		},
 		-- This is the key part: catppuccin uses "mauve" as its default

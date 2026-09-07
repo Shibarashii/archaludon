@@ -2,9 +2,8 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		branch = "main",
-		init = function()
-			vim.g.loaded_nvim_treesitter = 1
-		end,
+		lazy = false, -- treesitter main branch does not support lazy-loading
+		build = ":TSUpdate", -- keep parsers in sync with plugin version after updates
 	},
 	{
 		"lewis6991/ts-install.nvim",
