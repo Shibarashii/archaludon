@@ -2,7 +2,26 @@ local map = vim.keymap.set
 
 -- Terminal
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-map('n', '<C-/>', ':split | term<CR>',  { desc = 'Open terminal in split' })
+local function terminal_dir()
+  if vim.bo.filetype == 'oil' then
+    return require('oil').get_current_dir(0)
+  end
+
+  local filename = vim.api.nvim_buf_get_name(0)
+  if filename == '' then
+    return vim.fn.getcwd()
+  end
+
+  return vim.fs.dirname(vim.fs.normalize(filename))
+end
+
+local function open_terminal()
+  vim.cmd('botright split')
+  vim.cmd('lcd ' .. vim.fn.fnameescape(terminal_dir()))
+  vim.cmd('terminal')
+end
+
+map('n', '<C-/>', open_terminal, { desc = 'Open terminal here' })
 
 -- Clear search highlight
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
