@@ -34,17 +34,23 @@ return {
 				information = { "underline" },
 			},
 		},
-		-- This is the key part: catppuccin uses "mauve" as its default
-		-- accent color across highlight groups (keywords, statusline
-		-- highlights, cursor, etc). Overriding mauve -> green gives you
-		-- a full "green accent" reskin without touching every highlight.
-		-- color_overrides = {
-		--  mocha = {
-		--    mauve = "#a6e3a1", -- mocha's own "green" hex
-		--  },
-		-- },
+		custom_highlights = function(colors)
+			return {
+				FloatBorder = { fg = colors.green },
+				WinSeparator = { fg = colors.green },
+				CursorLineNr = { fg = colors.green, style = { "bold" } },
+				Visual = { bg = colors.surface1 },
+				PmenuSel = { bg = colors.green, fg = colors.base },
+				TelescopeBorder = { fg = colors.green },
+				TelescopePromptBorder = { fg = colors.green },
+				TelescopeResultsBorder = { fg = colors.green },
+				TelescopePreviewBorder = { fg = colors.green },
+				WhichKeyBorder = { fg = colors.green },
+			}
+		end,
 	},
-	config = function()
+	config = function(_, opts)
+		require("catppuccin").setup(opts)
 		vim.cmd.colorscheme("catppuccin")
 	end,
 }
