@@ -90,6 +90,7 @@ return {
 				{ "<leader>f", group = "Find (Telescope)" },
 				{ "<leader>h", group = "Hunk (Git)" },
 				{ "<leader>t", group = "Toggle" },
+				{ "<leader>o", group = "Oil (files)" },
 			},
 		},
 		keys = {
