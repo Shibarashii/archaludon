@@ -27,6 +27,12 @@ return {
 			-- Take over directory buffers (replaces netrw for directories)
 			default_file_explorer = true,
 
+			-- Required by oil-git-signs: 2 sign columns = index status + working tree status
+			win_options = {
+				signcolumn = "yes:2",
+				statuscolumn = "",
+			},
+
 			-- Columns to show in the directory listing
 			columns = {
 				"icon",
@@ -50,22 +56,23 @@ return {
 
 			-- Remap <C-h> (conflicts with window navigation) → <C-x>
 			keymaps = {
-				["g?"]    = { "actions.show_help", mode = "n" },
-				["<CR>"]  = "actions.select",
-				["<C-s>"] = { "actions.select", opts = { vertical = true },   desc = "Open in vertical split" },
+				["g?"] = { "actions.show_help", mode = "n" },
+				["<CR>"] = "actions.select",
+				["<C-s>"] = { "actions.select", opts = { vertical = true }, desc = "Open in vertical split" },
 				["<C-x>"] = { "actions.select", opts = { horizontal = true }, desc = "Open in horizontal split" },
-				["<C-t>"] = { "actions.select", opts = { tab = true },        desc = "Open in new tab" },
+				["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open in new tab" },
 				["<C-p>"] = "actions.preview",
 				["<C-c>"] = { "actions.close", mode = "n" },
-				["<C-l>"] = "actions.refresh",
-				["-"]     = { "actions.parent", mode = "n" },
-				["_"]     = { "actions.open_cwd", mode = "n" },
-				["`"]     = { "actions.cd", mode = "n" },
-				["~"]     = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
-				["gs"]    = { "actions.change_sort", mode = "n" },
-				["gx"]    = "actions.open_external",
-				["g."]    = { "actions.toggle_hidden", mode = "n" },
-				["g\\"]   = { "actions.toggle_trash", mode = "n" },
+				["<C-l>"] = false,
+				["<leader>or"] = { "actions.refresh", mode = "n", desc = "Refresh Oil" },
+				["-"] = { "actions.parent", mode = "n" },
+				["_"] = { "actions.open_cwd", mode = "n" },
+				["`"] = { "actions.cd", mode = "n" },
+				["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+				["gs"] = { "actions.change_sort", mode = "n" },
+				["gx"] = "actions.open_external",
+				["g."] = { "actions.toggle_hidden", mode = "n" },
+				["g\\"] = { "actions.toggle_trash", mode = "n" },
 				-- Disable the default <C-h> to avoid conflicting with window navigation
 				["<C-h>"] = false,
 			},
@@ -96,5 +103,26 @@ return {
 			-- Open oil in a floating window
 			{ "<leader>o", "<CMD>Oil --float<CR>", desc = "Oil (float)" },
 		},
+	},
+
+	-- ── oil-git-signs ────────────────────────────────────────────────────
+	-- Git status (index + working tree) shown as signs inside oil buffers.
+	-- Supports staging/unstaging files directly from the oil buffer.
+	-- Docs: https://github.com/FerretDetective/oil-git-signs.nvim
+	-- ft = "oil" is the recommended pattern from docs — only loads for oil buffers
+	-- { "malewicz1337/oil-git.nvim", dependencies = { "stevearc/oil.nvim" } },
+	-- {
+	-- 	"refractalize/oil-git-status.nvim",
+	--
+	-- 	dependencies = {
+	-- 		"stevearc/oil.nvim",
+	-- 	},
+	--
+	-- 	config = true,
+	-- },
+	{
+		"Shibarashii/oil-git.nvim",
+		name = "oil-git.nvim",
+		dependencies = { "stevearc/oil.nvim" },
 	},
 }
