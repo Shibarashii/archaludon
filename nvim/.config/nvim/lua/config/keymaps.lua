@@ -1,50 +1,26 @@
 local map = vim.keymap.set
 
--- Terminal
-map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-local function terminal_dir()
-  if vim.bo.filetype == 'oil' then
-    return require('oil').get_current_dir(0)
-  end
-
-  local filename = vim.api.nvim_buf_get_name(0)
-  if filename == '' then
-    return vim.fn.getcwd()
-  end
-
-  return vim.fs.dirname(vim.fs.normalize(filename))
-end
-
-local function open_terminal()
-  vim.cmd('botright split')
-  vim.cmd('lcd ' .. vim.fn.fnameescape(terminal_dir()))
-  vim.cmd('terminal')
-end
-
-map('n', '<C-/>', open_terminal, { desc = 'Open terminal here' })
-
 -- Clear search highlight
-map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 
 -- Window navigation
-map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus left' })
-map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus right' })
-map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus down' })
-map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus up' })
+map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus left" })
+map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus right" })
+map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus down" })
+map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus up" })
 
-vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = function(event)
-    local buf = { buffer = event.buf }
-    map('n', 'gd', vim.lsp.buf.definition,                        vim.tbl_extend('force', buf, { desc = 'Go to definition' }))
-    map('n', 'gD', vim.lsp.buf.declaration,                       vim.tbl_extend('force', buf, { desc = 'Go to declaration' }))
-    map('n', 'gi', vim.lsp.buf.implementation,                    vim.tbl_extend('force', buf, { desc = 'Go to implementation' }))
-    map('n', 'gr', vim.lsp.buf.references,                        vim.tbl_extend('force', buf, { desc = 'Go to references' }))
-    map('n', 'K',  vim.lsp.buf.hover,                             vim.tbl_extend('force', buf, { desc = 'Hover documentation' }))
-    map('n', '<leader>rn', vim.lsp.buf.rename,                    vim.tbl_extend('force', buf, { desc = 'Rename symbol' }))
-    map({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action,     vim.tbl_extend('force', buf, { desc = 'Code action' }))
-    -- Formatting is handled by conform.nvim (<leader>gf) with lsp fallback.
-    -- Do not add a separate vim.lsp.buf.format binding here.
-  end,
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP actions",
+	callback = function(event)
+		local buf = { buffer = event.buf }
+		map("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", buf, { desc = "Go to definition" }))
+		map("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", buf, { desc = "Go to declaration" }))
+		map("n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", buf, { desc = "Go to implementation" }))
+		map("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", buf, { desc = "Go to references" }))
+		map("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", buf, { desc = "Hover documentation" }))
+		map("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", buf, { desc = "Rename symbol" }))
+		map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", buf, { desc = "Code action" }))
+		-- Formatting is handled by conform.nvim (<leader>gf) with lsp fallback.
+		-- Do not add a separate vim.lsp.buf.format binding here.
+	end,
 })
-
