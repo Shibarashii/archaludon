@@ -1,5 +1,5 @@
 -- plugins/misc.lua
--- Plugins: gitsigns, which-key, mini.pairs, lazydev
+-- Plugins: gitsigns, which-key, mini.pairs 
 return {
 	-- ── Git signs ─────────────────────────────────────────────────────────
 	-- Keymaps follow the official on_attach pattern from:
@@ -111,16 +111,5 @@ return {
 		"echasnovski/mini.pairs",
 		event = "InsertEnter",
 		opts = {},
-	},
-	{
-		"folke/lazydev.nvim",
-		ft = "lua", -- only load on lua files
-		opts = {
-			library = {
-				-- See the configuration section for more details
-				-- Load luvit types when the `vim.uv` word is found
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-			},
-		},
 	},
 }
