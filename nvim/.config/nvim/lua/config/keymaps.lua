@@ -13,10 +13,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
 	callback = function(event)
 		local buf = { buffer = event.buf }
-		map("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", buf, { desc = "Go to definition" }))
-		map("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", buf, { desc = "Go to declaration" }))
-		map("n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", buf, { desc = "Go to implementation" }))
-		map("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", buf, { desc = "Go to references" }))
 		map("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", buf, { desc = "Hover documentation" }))
 		map("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", buf, { desc = "Rename symbol" }))
 		map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", buf, { desc = "Code action" }))
