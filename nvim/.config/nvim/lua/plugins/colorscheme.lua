@@ -8,7 +8,7 @@ return {
 			light = "latte",
 			dark = "mocha",
 		},
-		transparent_background = false,
+		transparent_background = true,
 		term_colors = true,
 		integrations = {
 			blink_cmp = true,
@@ -36,6 +36,7 @@ return {
 		},
 		custom_highlights = function(colors)
 			return {
+				NormalFloat = { bg = "NONE" },
 				FloatBorder = { fg = colors.green },
 				WinSeparator = { fg = colors.green },
 				CursorLineNr = { fg = colors.green, style = { "bold" } },
