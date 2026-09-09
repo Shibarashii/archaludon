@@ -91,6 +91,7 @@ return {
 				{ "<leader>h", group = "Hunk (Git)" },
 				{ "<leader>t", group = "Toggle" },
 				{ "<leader>o", group = "Oil (files)" },
+				{ "<leader>d", group = "Debug" },
 			},
 		},
 		keys = {
