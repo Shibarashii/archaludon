@@ -1,5 +1,5 @@
 -- plugins/misc.lua
--- Plugins: gitsigns, which-key, mini.pairs 
+-- Plugins: gitsigns, which-key, mini.pairs
 return {
 	-- ── Git signs ─────────────────────────────────────────────────────────
 	-- Keymaps follow the official on_attach pattern from:
@@ -92,6 +92,7 @@ return {
 				{ "<leader>t", group = "Toggle" },
 				{ "<leader>o", group = "Oil (files)" },
 				{ "<leader>d", group = "Debug" },
+				{ "<leader>a", group = "AI (OpenCode)" },
 			},
 		},
 		keys = {
