@@ -14,6 +14,8 @@ hl.config({
 
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
         scroll_factor = 1.5,
+        repeat_rate = 60,
+        repeat_delay = 400
 
     },
 })
