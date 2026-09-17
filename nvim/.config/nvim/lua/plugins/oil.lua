@@ -121,7 +121,7 @@ return {
 	-- 	config = true,
 	-- },
 	{
-		"Shibarashii/oil-git.nvim",
+		"malewicz1337/oil-git.nvim",
 		name = "oil-git.nvim",
 		dependencies = { "stevearc/oil.nvim" },
 	},
