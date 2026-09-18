@@ -95,7 +95,18 @@ return {
 		lazy = false,
 
 		-- nvim-web-devicons is already in your config; use it for file icons
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons" },
+			{
+				"malewicz1337/oil-git.nvim",
+				dependencies = { "stevearc/oil.nvim" },
+				opts = {
+					show_file_highlights = true,
+					show_directory_highlights = true,
+					show_ignored_files = true,
+				},
+			},
+		},
 
 		keys = {
 			-- vim-vinegar style: - opens the parent directory of the current file
@@ -120,9 +131,4 @@ return {
 	--
 	-- 	config = true,
 	-- },
-	{
-		"malewicz1337/oil-git.nvim",
-		name = "oil-git.nvim",
-		dependencies = { "stevearc/oil.nvim" },
-	},
 }
