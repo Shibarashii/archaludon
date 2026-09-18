@@ -36,6 +36,8 @@ return {
 		},
 		custom_highlights = function(colors)
 			return {
+				OilDir = {fg = colors.lavender, style = {"bold"} },
+				OilDirIcon = {fg = colors.lavender},
 				NormalFloat = { bg = "NONE" },
 				FloatBorder = { fg = colors.green },
 				WinSeparator = { fg = colors.green },
