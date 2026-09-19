@@ -104,6 +104,7 @@ return {
 					show_file_highlights = true,
 					show_directory_highlights = true,
 					show_ignored_files = true,
+					-- show_ignored_directories = true,
 				},
 			},
 		},

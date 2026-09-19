@@ -45,12 +45,10 @@ return {
     dap.defaults.fallback.switchbuf = "usevisible,usetab,newtab"
 
     -- ── Signs ─────────────────────────────────────────────────────────────
-    -- linehl highlights the entire line the debugger is stopped/breakpoint on.
-    -- See :h sign_define() and nvim-dap docs on Signs Configuration.
     vim.fn.sign_define("DapStopped", {
       text = "▶",
       texthl = "DiagnosticWarn",
-      linehl = "debugPC",       -- built-in hl group for the current debug line
+      linehl = "debugPC",
       numhl = "DiagnosticWarn",
     })
     vim.fn.sign_define("DapBreakpoint", {
@@ -72,6 +70,53 @@ return {
       text = "◉",
       texthl = "DiagnosticInfo",
       numhl = "DiagnosticInfo",
+    })
+
+    -- ── Django ────────────────────────────────────────────────────────────
+    -- mason-nvim-dap's default python handler only generates a "Launch file"
+    -- config. Django needs to launch manage.py with specific args instead,
+    -- so we append a second configuration rather than replace the default.
+    dap.configurations.python = dap.configurations.python or {}
+    table.insert(dap.configurations.python, {
+      type = "python",
+      request = "launch",
+      name = "Django: runserver",
+      -- Auto-discover manage.py: check cwd first, then one level down.
+      -- ${workspaceFolder} is a VS Code variable that nvim-dap does NOT expand.
+      program = function()
+        local cwd = vim.fn.getcwd()
+        if vim.fn.filereadable(cwd .. "/manage.py") == 1 then
+          return cwd .. "/manage.py"
+        end
+        -- Search one directory deep (common layout: project/app/manage.py)
+        local found = vim.fn.glob(cwd .. "/*/manage.py", false, true)
+        if #found > 0 then
+          return found[1]
+        end
+        return vim.fn.input("manage.py path: ", cwd .. "/", "file")
+      end,
+      -- cwd must point to the directory containing manage.py so Django can
+      -- resolve settings and relative imports correctly.
+      cwd = function()
+        local cwd = vim.fn.getcwd()
+        if vim.fn.filereadable(cwd .. "/manage.py") == 1 then
+          return cwd
+        end
+        local found = vim.fn.glob(cwd .. "/*/manage.py", false, true)
+        if #found > 0 then
+          return vim.fn.fnamemodify(found[1], ":h")
+        end
+        return cwd
+      end,
+      args = { "runserver", "--noreload" },
+      django = true,
+      justMyCode = true,
+      console = "integratedTerminal",
+      -- Point this at your project's virtualenv python, NOT system python,
+      -- or Django (and your other installed packages) won't be importable.
+      pythonPath = function()
+        return vim.fn.getcwd() .. "/.venv/bin/python"
+      end,
     })
   end,
 }
