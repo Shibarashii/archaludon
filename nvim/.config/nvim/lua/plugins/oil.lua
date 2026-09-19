@@ -99,7 +99,6 @@ return {
 			{ "nvim-tree/nvim-web-devicons" },
 			{
 				"malewicz1337/oil-git.nvim",
-				dependencies = { "stevearc/oil.nvim" },
 				opts = {
 					show_file_highlights = true,
 					show_directory_highlights = true,
@@ -116,20 +115,4 @@ return {
 			{ "<leader>o", "<CMD>Oil --float<CR>", desc = "Oil (float)" },
 		},
 	},
-
-	-- ── oil-git-signs ────────────────────────────────────────────────────
-	-- Git status (index + working tree) shown as signs inside oil buffers.
-	-- Supports staging/unstaging files directly from the oil buffer.
-	-- Docs: https://github.com/FerretDetective/oil-git-signs.nvim
-	-- ft = "oil" is the recommended pattern from docs — only loads for oil buffers
-	-- { "malewicz1337/oil-git.nvim", dependencies = { "stevearc/oil.nvim" } },
-	-- {
-	-- 	"refractalize/oil-git-status.nvim",
-	--
-	-- 	dependencies = {
-	-- 		"stevearc/oil.nvim",
-	-- 	},
-	--
-	-- 	config = true,
-	-- },
 }
