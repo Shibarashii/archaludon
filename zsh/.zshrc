@@ -9,7 +9,7 @@ alias nv='nvim'
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 
 # Path to your Oh My Zsh installation.
@@ -40,9 +40,10 @@ alias ehypr='$IDE ~/dotfiles/hypr/.config/hypr'
 alias ewaybar='$IDE ~/dotfiles/waybar/.config/waybar'
 alias ezshrc='$IDE ~/dotfiles/zsh/.zshrc'
 alias erofi='$IDE ~/dotfiles/rofi/.config/rofi'
+alias envim='nvim ~/.config/nvim/'
 
 # Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="true"
+# CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -96,8 +97,8 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-autocomplete archlinux) 
+# zsh-autocomplete
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use archlinux) 
 
 source $ZSH/oh-my-zsh.sh
 
