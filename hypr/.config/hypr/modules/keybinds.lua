@@ -1,9 +1,10 @@
 package.path = package.path .. ";./?.lua;./?/init.lua"
 local smw = require("plugins.split-monitor-workspaces")
+-- Plugin: https://github.com/zjeffer/split-monitor-workspaces
 
 -- Set programs that you use
 local terminal    = "kitty"
-local fileManager = "thunar"
+local fileManager = "kitty -e yazi"
 local menu        = "~/.config/rofi/type-3/launcher.sh"
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 

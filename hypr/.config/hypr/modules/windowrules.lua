@@ -52,6 +52,14 @@ hl.layer_rule({
 	ignore_alpha = 0.5,
 })
 
+
+hl.window_rule({
+  name = "yakc-blur",
+  match = { class = "Yakc"},
+  size = {300, 300},
+  no_blur = true,
+})
+
 hl.layer_rule({
 	name = "notification-window-blur",
 	match = { namespace = "swaync-notification-window" },
